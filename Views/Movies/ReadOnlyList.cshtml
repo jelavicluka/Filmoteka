@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Filmoteka.Models.Movies>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Movies</h2>
+
+<p>
+
+</p>
+
+<table id="movies" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Movie</th>
+            <th>Genre</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @* @foreach (var movie in Model)
+        {
+            <tr>
+                <td>@Html.ActionLink(movie.Name, "Edit", "Movies", new { id = movie.Id }, null)</td>
+                <td>@movie.Genre.MovieGenre</td>
+                <td>
+                    <button data-movie-id="@movie.Id" class="btn-link js-delete"> Delete </button>
+                </td>
+            </tr>
+        }*@
+    </tbody>
+</table>
+
+@section scripts
+    {
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var table = $("#movies").DataTable({
+                ajax: {
+                    url: "/api/movies",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name"
+                    },
+                    {
+                        data: "genre.movieGenre"
+                    }
+                ]
+            });
+        });
+    </script>
+}
